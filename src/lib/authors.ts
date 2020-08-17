@@ -1,10 +1,10 @@
-export const authors = () => [
-  {
-    name: 'J.K. Rowling',
-    books: [1, 2, 3, 4]
-  },
-  {
-    name: 'Michael Crichton',
-    books: [5]
+export function makeAuthors (db) {
+  return {
+    getAll: () => {
+      return db.get('authors')
+    },
+    getById: () => { },
+    update: () => { },
+    delete: () => { }
   }
-]
+}
