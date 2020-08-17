@@ -1,9 +1,7 @@
-const { ApolloServer } = require('apollo-server')
-const { typeDefs } = require('./typeDefs')
-const books = require('./books')
-const authors = require('./authors')
+import { books } from './books'
+import { authors } from './authors'
 
-const resolvers = {
+export const resolvers = {
   Query: {
     books: () => books(),
     authors: (_p, args) => {
@@ -19,9 +17,3 @@ const resolvers = {
     books: (author) => books().filter((x) => x.author === author.name)
   }
 }
-
-const server = new ApolloServer({ typeDefs, resolvers })
-
-server.listen().then(({ url }) => {
-  console.log(`🚀  Server ready at ${url}`)
-})

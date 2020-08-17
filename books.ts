@@ -1,4 +1,4 @@
-const books = () => [
+export const books = () => [
   {
     id: 1,
     title: 'Harry Potter and the Sorcerers Stone',
@@ -25,5 +25,3 @@ const books = () => [
     author: 'Michael Crichton'
   }
 ]
-
-module.exports = books
