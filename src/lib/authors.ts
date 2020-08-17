@@ -1,6 +1,6 @@
 import * as shortid from 'shortid'
 
-type Author = {
+export type Author = {
   _id: string
   name: string
   books: string[]

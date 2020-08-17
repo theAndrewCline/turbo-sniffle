@@ -1,7 +1,7 @@
 import { makeDB } from '../src/lib/db'
 import * as shortid from 'shortid'
 
-import { makeAuthors } from '../src/lib/authors'
+import { makeAuthors, Author } from '../src/lib/authors'
 
 describe('authors db interface', () => {
   let seedId: string
@@ -18,7 +18,7 @@ describe('authors db interface', () => {
         {
           _id: seedId,
           name: 'J.K. Rowling',
-          books: [1, 2, 3, 4]
+          books: ['1', '2', '3', '4']
         }
       ]
     }
@@ -32,7 +32,7 @@ describe('authors db interface', () => {
           {
             _id: seedId,
             name: 'J.K. Rowling',
-            books: [1, 2, 3, 4]
+          books: ['1', '2', '3', '4']
           }
         ]
     )
@@ -67,14 +67,14 @@ describe('authors db interface', () => {
       seedId, 
       {
         name: seedAuthors.authors[0].name,
-        books: [...seedAuthors.authors[0].books, 5],
+        books: [...seedAuthors.authors[0].books, '5'],
       }
     )
 
     expect(updatedAuthor).toEqual({
       _id: seedId,
       name: seedAuthors.authors[0].name,
-      books: [1, 2, 3, 4, 5],
+      books: ['1', '2', '3', '4', '5']
     })
 
     const updates = Authors.getById(seedId)
@@ -82,7 +82,7 @@ describe('authors db interface', () => {
     expect(updates).toEqual({
       _id: seedId,
       name: seedAuthors.authors[0].name,
-      books: [1, 2, 3, 4, 5]
+      books: ['1', '2', '3', '4', '5']
     })
   })
 

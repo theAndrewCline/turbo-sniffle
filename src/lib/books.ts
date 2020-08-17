@@ -1,27 +1,48 @@
-export const books = () => [
-  {
-    id: 1,
-    title: 'Harry Potter and the Sorcerers Stone',
-    author: 'J.K. Rowling'
-  },
-  {
-    id: 2,
-    title: 'Harry Potter and the Chamber of Secrets',
-    author: 'J.K. Rowling'
-  },
-  {
-    id: 3,
-    title: 'Harry Potter and the Prisoner of Azkaban',
-    author: 'J.K. Rowling'
-  },
-  {
-    id: 4,
-    title: 'Harry Potter and the Goblet of Fire',
-    author: 'J.K. Rowling'
-  },
-  {
-    id: 5,
-    title: 'Jurassic Park',
-    author: 'Michael Crichton'
+import { generate as generateId } from 'shortid'
+export function makeBooks (db) {
+
+  return {
+    getAll: () => {
+      return db.get('books').value()
+    },
+    getById: (id: string) => {
+      return db.get('books').find({ _id: id }).value()
+    },
+    create: (title, author) => {
+      const book = {
+        _id: generateId(),
+        title,
+        author
+      }
+
+      db.get('books').push(book).write()
+
+      return book
+    },
+    update: (
+      id: string,
+      updates: { title: string, author: string }
+    ) => {
+
+      db.get('books')
+        .find({ _id: id })
+        .assign(updates)
+        .write()
+
+      const book = {
+        _id: id,
+        title: updates.title,
+        author: updates.author
+      }
+
+      return book
+    },
+    delete: (id: string) => {
+      db.get('books')
+        .remove({ _id: id })
+        .write()
+
+      return id
+    }
   }
-]
+}
