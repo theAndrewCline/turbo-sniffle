@@ -1,3 +1,4 @@
 node_modules/
 *.swp
 *.swo
+live/db.json
