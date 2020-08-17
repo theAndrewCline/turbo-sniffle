@@ -14,12 +14,8 @@ export function makeBooks(db) {
     getById: (id: string): Book => {
       return db.get('books').find({ _id: id }).value()
     },
-    create: (title, author): Book => {
-      const book = {
-        _id: generateId(),
-        title,
-        author
-      }
+    create: (title: string, author: string): Book => {
+      const book = { _id: generateId(), title, author }
 
       db.get('books').push(book).write()
 
