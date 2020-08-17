@@ -1,11 +1,14 @@
 import { books as getBooks } from './books'
-import { authors as getAuthors } from './authors'
+import { makeAuthors } from './authors'
+import { makeDB } from './db'
+
+const Authors = makeAuthors(makeDB())
 
 const authors = (_p, args) => {
   if (args.name) {
-    return getAuthors().filter((x) => x.name === args.name)
+    return Authors.getAll().filter((x) => x.name === args.name)
   } else {
-    return getAuthors()
+    return Authors.getAll()
   }
 }
 
