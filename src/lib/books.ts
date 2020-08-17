@@ -1,14 +1,20 @@
 import { generate as generateId } from 'shortid'
+export type Book = {
+  _id: string,
+  title: string,
+  author: string
+}
+
 export function makeBooks (db) {
 
   return {
-    getAll: () => {
+    getAll: (): Book[] => {
       return db.get('books').value()
     },
-    getById: (id: string) => {
+    getById: (id: string): Book => {
       return db.get('books').find({ _id: id }).value()
     },
-    create: (title, author) => {
+    create: (title, author): Book  => {
       const book = {
         _id: generateId(),
         title,
@@ -22,7 +28,7 @@ export function makeBooks (db) {
     update: (
       id: string,
       updates: { title: string, author: string }
-    ) => {
+    ): Book => {
 
       db.get('books')
         .find({ _id: id })
@@ -37,7 +43,7 @@ export function makeBooks (db) {
 
       return book
     },
-    delete: (id: string) => {
+    delete: (id: string): string => {
       db.get('books')
         .remove({ _id: id })
         .write()

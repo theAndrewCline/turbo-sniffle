@@ -8,10 +8,10 @@ export type Author = {
 
 export function makeAuthors (db) {
   return {
-    getAll: () => {
+    getAll: (): Author[] => {
       return db.get('authors').value()
     },
-    getById: (id: string) => {
+    getById: (id: string): Author => {
       return db.get('authors').find({ _id: id }).value()
     },
     create: (name: string, books: string[]) => {
@@ -28,7 +28,7 @@ export function makeAuthors (db) {
     update: (
       id: string,
       updates: { books: string[], name: string }
-    ) => {
+    ): Author => {
 
       db.get('authors')
         .find({ _id: id })
@@ -43,7 +43,7 @@ export function makeAuthors (db) {
 
       return author
     },
-    delete: (id: string) => {
+    delete: (id: string): string => {
       db.get('authors')
         .remove({ _id: id })
         .write()

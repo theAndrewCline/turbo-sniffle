@@ -14,7 +14,8 @@ export function makeDB (seed?) {
     db.defaults(seed).write()
   } else {
     db.defaults({
-      authors: []
+      authors: [],
+      books: []
     }).write()
   }
 
