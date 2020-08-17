@@ -1,8 +1,10 @@
-import { books as getBooks } from './books'
+import { makeBooks } from './books'
 import { makeAuthors } from './authors'
 import { makeDB } from './db'
 
-const Authors = makeAuthors(makeDB())
+const db = makeDB()
+const Authors = makeAuthors(db)
+const Books = makeBooks(db)
 
 const authors = (_p, args) => {
   if (args.name) {
@@ -12,7 +14,9 @@ const authors = (_p, args) => {
   }
 }
 
-const books = () => getBooks
+const books = () => {
+  return Books.getAll()
+}
 
 export const resolvers = {
   Query: {
@@ -21,6 +25,8 @@ export const resolvers = {
   },
   Author: {
     name: (author: any) => author.name,
-    books: (author: any) => getBooks().filter((x) => x.author === author.name)
+    books: (author: any) => 
+      Books.getAll()
+           .filter((x) => x.author === author.name)
   }
 }
