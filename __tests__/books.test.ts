@@ -1,6 +1,6 @@
 import { makeBooks } from '../src/lib/books'
 import { makeDB } from '../src/lib/db'
-import { generate as generateId }from 'shortid'
+import { generate as generateId } from 'shortid'
 
 describe('books controller', () => {
   let Books
@@ -29,9 +29,9 @@ describe('books controller', () => {
   })
 
   it('should be able to get all books', () => {
-   const books = Books.getAll() 
+    const books = Books.getAll()
 
-   expect(books).toEqual(seed)
+    expect(books).toEqual(seed)
   })
 
   it('should be able to get books by id', () => {
@@ -41,7 +41,10 @@ describe('books controller', () => {
   })
 
   it('should be able to create a book', () => {
-    const book = Books.create('Harry Potter and the Order of the Phonix', 'J.K. Rowling')
+    const book = Books.create(
+      'Harry Potter and the Order of the Phonix',
+      'J.K. Rowling'
+    )
 
     expect(Books.getAll()).toEqual(
       expect.arrayContaining([
@@ -61,23 +64,21 @@ describe('books controller', () => {
   })
 
   it('should be able to update a book', () => {
-    const updatedBook = Books.update(
-      seed[0]._id,
-      { author: 'J.K. Rowling'
-      , title: 'Harry Potter and the Philosiphers Stone' 
-      }
-    )
+    const updatedBook = Books.update(seed[0]._id, {
+      author: 'J.K. Rowling',
+      title: 'Harry Potter and the Philosiphers Stone'
+    })
 
     expect(Books.getById(seed[0]._id)).toEqual({
       _id: seed[0]._id,
       author: 'J.K. Rowling',
-      title: 'Harry Potter and the Philosiphers Stone' 
+      title: 'Harry Potter and the Philosiphers Stone'
     })
 
     expect(updatedBook).toEqual({
       _id: seed[0]._id,
       author: 'J.K. Rowling',
-      title: 'Harry Potter and the Philosiphers Stone' 
+      title: 'Harry Potter and the Philosiphers Stone'
     })
   })
 

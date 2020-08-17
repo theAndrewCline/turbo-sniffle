@@ -6,7 +6,7 @@ export type Author = {
   books: string[]
 }
 
-export function makeAuthors (db) {
+export function makeAuthors(db) {
   return {
     getAll: (): Author[] => {
       return db.get('authors').value()
@@ -18,7 +18,7 @@ export function makeAuthors (db) {
       const author = {
         _id: shortid.generate(),
         name,
-        books,
+        books
       }
 
       db.get('authors').push(author).write()
@@ -27,13 +27,9 @@ export function makeAuthors (db) {
     },
     update: (
       id: string,
-      updates: { books: string[], name: string }
+      updates: { books: string[]; name: string }
     ): Author => {
-
-      db.get('authors')
-        .find({ _id: id })
-        .assign(updates)
-        .write()
+      db.get('authors').find({ _id: id }).assign(updates).write()
 
       const author = {
         _id: id,
@@ -44,11 +40,9 @@ export function makeAuthors (db) {
       return author
     },
     delete: (id: string): string => {
-      db.get('authors')
-        .remove({ _id: id })
-        .write()
+      db.get('authors').remove({ _id: id }).write()
 
-        return id
+      return id
     }
   }
 }

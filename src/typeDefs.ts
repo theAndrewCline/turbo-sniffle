@@ -19,12 +19,14 @@ export const typeDefs = gql`
   }
 
   type Mutation {
-    createBook(args: { title: String, author: String }): Book
-    updateBook(id: String, args: { title: String, author: String }): Book
-    deleteBook(id: String): String
+    createAuthor(name: String): Author
+    deleteAuthor(id: String): ID
 
-    createAuthor(String, args: { name: String, books: Book[] }): Author
-    updateAuthor(id: String, args: { name: String, books: Book[] }: Author
-    deleteAuthor(id: String): String
+    createBook(title: String, author_id: String): Book
+    deleteBook(id: String): ID
+  }
+
+  type ID {
+    _id: String
   }
 `

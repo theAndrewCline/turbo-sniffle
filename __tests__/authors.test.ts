@@ -5,10 +5,10 @@ import { makeAuthors, Author } from '../src/lib/authors'
 
 describe('authors db interface', () => {
   let seedId: string
-  let seedAuthors: { 
+  let seedAuthors: {
     authors: Author[]
   }
-  let db  
+  let db
   let Authors
 
   beforeEach(() => {
@@ -27,15 +27,13 @@ describe('authors db interface', () => {
   })
 
   it('should be able to get all authors', () => {
-    expect(Authors.getAll()).toEqual(
-        [
-          {
-            _id: seedId,
-            name: 'J.K. Rowling',
-          books: ['1', '2', '3', '4']
-          }
-        ]
-    )
+    expect(Authors.getAll()).toEqual([
+      {
+        _id: seedId,
+        name: 'J.K. Rowling',
+        books: ['1', '2', '3', '4']
+      }
+    ])
   })
 
   it('should be able to create authors', () => {
@@ -53,9 +51,7 @@ describe('authors db interface', () => {
       expect.arrayContaining([expect.objectContaining(lewis)])
     )
 
-    expect(newAuth).toEqual(
-      expect.objectContaining(lewis)
-    )
+    expect(newAuth).toEqual(expect.objectContaining(lewis))
   })
 
   it('should be able to get Author By id', () => {
@@ -63,13 +59,10 @@ describe('authors db interface', () => {
   })
 
   it('should be able to update an author', () => {
-    const updatedAuthor = Authors.update(
-      seedId, 
-      {
-        name: seedAuthors.authors[0].name,
-        books: [...seedAuthors.authors[0].books, '5'],
-      }
-    )
+    const updatedAuthor = Authors.update(seedId, {
+      name: seedAuthors.authors[0].name,
+      books: [...seedAuthors.authors[0].books, '5']
+    })
 
     expect(updatedAuthor).toEqual({
       _id: seedId,
