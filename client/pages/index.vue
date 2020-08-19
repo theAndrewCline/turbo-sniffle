@@ -18,7 +18,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang="js">
 import Vue from 'vue'
 import gql from 'graphql-tag'
 
@@ -64,8 +64,6 @@ export default Vue.extend({
         },
         update(store, { data: { createAuthor } }) {
           const data = store.readQuery({ query: GET_AUTHORS })
-          console.log(createAuthor, data)
-
           data.authors.push(createAuthor)
           store.writeQuery({ query: GET_AUTHORS }, data)
         },
@@ -81,7 +79,9 @@ export default Vue.extend({
     }
   },
   apollo: {
-    authors: GET_AUTHORS
+    authors: {
+      query: GET_AUTHORS
+    }
   }
 })
 </script>
@@ -96,32 +96,10 @@ export default Vue.extend({
 }
 
 .add-btn {
-  @apply text-2xl font-bold bg-green-400 px-5 py-2 mt-2 rounded-full;
+  @apply text-2xl font-bold bg-orange-300 px-5 py-2 mt-2 rounded-full;
 }
 
 .submit-btn {
-  @apply bg-green-400 px-5 py-2 mt-2 rounded;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
+  @apply bg-orange-300 px-5 py-2 mt-2 rounded;
 }
 </style>

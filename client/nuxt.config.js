@@ -21,10 +21,10 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || '',
-      },
+        content: process.env.npm_package_description || ''
+      }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
   /*
    ** Global CSS
@@ -44,9 +44,8 @@ export default {
    ** Nuxt.js dev-modules
    */
   buildModules: [
-    '@nuxt/typescript-build',
     // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
-    '@nuxtjs/tailwindcss',
+    '@nuxtjs/tailwindcss'
   ],
   /*
    ** Nuxt.js modules
@@ -60,8 +59,8 @@ export default {
   apollo: {
     clientConfigs: {
       default: {
-        httpEndpoint: 'http://localhost:4000',
-      },
-    },
-  },
+        httpEndpoint: 'http://localhost:4000'
+      }
+    }
+  }
 }
