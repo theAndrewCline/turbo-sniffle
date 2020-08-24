@@ -1,6 +1,8 @@
 <template>
   <nav class="nav">
-    <h1 class="logo">Read Good</h1>
+    <router-link to="/">
+      <h1 class="logo">Read Well</h1>
+    </router-link>
   </nav>
 </template>
 
